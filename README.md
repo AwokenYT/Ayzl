@@ -5,6 +5,6 @@
 # Development Team
 - Awoken
 - ScienceyZac
-- Rex
-- Molai
+- Rex (Pending request)
+- Molai (Pending request)
 
