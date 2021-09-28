@@ -1,10 +1,10 @@
-#Features
+# About
 
-#Development Team
+# Features
+
+# Development Team
 - Awoken
 - ScienceyZac
 - Rex
 - Molai
-
-#About 
 
