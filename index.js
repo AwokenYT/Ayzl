@@ -1,6 +1,11 @@
 require('dotenv').config();
 const {Client, Intents} = require('discord.js');
 const client = new Client({intents: Intents.FLAGS.GUILDS});
+const { readdirSync } = require('fs');
+
+readdirSync('./handlers').forEach(handler => {
+    require(`./handlers/${handler}`)(client);
+});
 
 if (process.env.USER == 'root') {
     client.login(process.env.BOTTOKEN);
