@@ -6,5 +6,5 @@
 
 -   Awoken
 -   ScienceyZac
--   Rex (Pending request)
+-   Rex
 -   Molai

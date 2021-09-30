@@ -1,0 +1,11 @@
+{
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.prettier": false
+      },
+      "eslint.format.enable": true,
+      "eslint.run": "onType",
+    "eslint.debug": true,
+    "eslint.alwaysShowStatus": true,
+}
