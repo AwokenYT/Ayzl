@@ -3,8 +3,8 @@
 # Features
 
 # Development Team
-- Awoken
-- ScienceyZac
-- Rex (Pending request)
-- Molai
 
+-   Awoken
+-   ScienceyZac
+-   Rex (Pending request)
+-   Molai
