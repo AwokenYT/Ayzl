@@ -1,9 +1,10 @@
 const { readdirSync, statSync } = require('fs');
 module.exports = (client) => {
-    readdirSync('./commands').forEach(commandCatagory => {
-        if (statSync(`./commands/${commandCatagory}`).isFile()) return; // checks if its a file 
-        readdirSync(`./commands/${commandCatagory}`).forEach(commandFileName => {
-            const command = require(`../commands/${commandCatagory}/${commandFileName}`);
+    readdirSync('./commands').forEach(commandCategory => {
+        if (statSync(`./commands/${commandCategory}`).isFile()) return; // checks if its a file 
+        readdirSync(`./commands/${commandCategory}`).forEach(commandFileName => {
+            const command = require(`../commands/${commandCategory}/${commandFileName}`);
+            command.category = commandCategory;
             client.commands.set(command.name, command);
         });
     });
