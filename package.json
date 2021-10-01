@@ -11,7 +11,8 @@
 	"author": "Awoken, ScienceyZac, Molai, Rex",
 	"dependencies": {
 		"discord.js": "^13.1.0",
-		"dotenv": "^10.0.0"
+		"dotenv": "^10.0.0",
+		"sourcebin-wrapper": "^1.6.0"
 	},
 	"devDependencies": {
 		"eslint": "^7.32.0"
