@@ -6,9 +6,7 @@ module.exports = {
         let args;
         if (message.content.startsWith(prefix)) {// if it isnt a cmd then check other stuff, e.g. automod
             args = message.content.slice(2).split(' ');
-            const possibleCommand = args.shift();
-            let command = client.commands.get(possibleCommand);
-            if (!command) command = client.commands.find(cmd => cmd.aliases?.includes(possibleCommand));
+            const command = client.getCommand(args.shift());
             if (!command) return;
             if (command.ownerOnly && !ownerIds.includes(message.author.id)) {
                 if (typeof(command.ownerOnly) == 'string') return message.reply(command.ownerOnly);

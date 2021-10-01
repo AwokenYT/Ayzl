@@ -4,9 +4,8 @@ module.exports = {
     description: 'Gives info on a command, or a list of commands',
     aliases: ['commands', 'h'],
     run: (client, message, args) => {
-        console.log(args);
         if (args.length) {
-            const command = client.commands.get(args.shift()) || client.commands.find(cmd => cmd.aliases?.includes(args.shift()));
+            const command = client.getCommand(args.shift());
             if (command) {
                 const cmdInfo = new MessageEmbed()
                     .setTitle(command.name)
