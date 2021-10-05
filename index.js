@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { readdirSync } = require('fs');
 const {Client, Intents, Collection} = require('discord.js');
-let client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+let client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]});
 client.commands = new Collection();
 client = require('./customModules')(client);
 readdirSync('./handlers').forEach(handler => {
