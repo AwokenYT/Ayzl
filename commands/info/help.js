@@ -30,7 +30,7 @@ module.exports = {
                 .setTitle('Commands')
                 .setDescription('A list of commands');
             categorys.forEach(category => {
-                cmdList.addField(category.toUpperCase().replace(/(?<=\w)\w/g, (x) => x.toLowerCase()), client.commands.filter(cmd => cmd.category = category).map(cmd => `\`${cmd.name.toUpperCase().replace(/(?<=\w)\w/g, (x) => x.toLowerCase())}\``).join(' '));
+                cmdList.addField(category.toUpperCase().replace(/(?<=\w)\w/g, (x) => x.toLowerCase()), client.commands.filter(cmd => cmd.category == category).map(cmd => `\`${cmd.name.toUpperCase().replace(/(?<=\w)\w/g, (x) => x.toLowerCase())}\``).join(' '));
             });
                 message.channel.send({embeds: [cmdList]});
         }
