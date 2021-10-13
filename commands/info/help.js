@@ -23,7 +23,7 @@ module.exports = {
         } else {
             const categorys = [];
             client.commands.forEach(cmd => {
-                if (!categorys.includes(cmd.category)) categorys.push(cmd.category); // so that we have a list of categorys
+                if (!categorys.includes(cmd.category)) categorys.push(cmd.category); // so that we have a list of categories
             });
 
             const cmdList = new MessageEmbed()

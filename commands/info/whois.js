@@ -8,6 +8,18 @@ module.exports = {
         const memberString = args.join(' ').toLowerCase();
         let member;
         message.guild.members.fetch().then(members => {
+            const getEmojiFromStatus = (string) => {
+                if (string == 'dnd') {
+                    return '<:status_dnd:897699277164408892>';
+                } else if (string == 'online') {
+                    return '<:status_online:897700789991116810>';
+                } else if (string == 'idle') {
+                    return '<:status_idle:897701151393325077>';
+                } else {
+                    return '<:status_offline:897701613395906620>';
+                }
+            };
+
                 if (!args.length) member = message.member;
                 else {
                     member = message.mentions.members.first() || members.find(member => member.displayName.toLowerCase() === memberString || member.user.username.toLowerCase() == memberString) || message.guild.members.cache.get(memberString) || message.guild.members.cache.find(member => member.displayName.toLowerCase() === memberString);
@@ -18,12 +30,12 @@ module.exports = {
                 const fields = [
                     {
                         name: 'Joined:',
-                        value: `${moment(member.joinedAt).utc().format('MMMM Do YYYY, h:mm a')} UTC Time`,
+                        value: `${moment(member.joinedAt).utc().format('MMMM D  o YYYY, h:mm a')} UTC Time -- ${moment(member.joinedAt).fromNow()}`,
                         inline: true
                     },
                     {
                         name: 'Registered:',
-                        value: `${moment(member.user.createdAt).utc().format('MMMM Do YYYY, h:mm a')} UTC Time`,
+                        value: `${moment(member.user.createdAt).utc().format('MMMM Do YYYY, h:mm a')} UTC Time -- ${moment(member.user.createdAt).fromNow()}`,
                         inline: true
                     },
                     {
@@ -34,15 +46,14 @@ module.exports = {
                                 guildMember.index = index+1; return guildMember.user.id== member.user.id;
                             })[0].index
                         }`,
-                        inline: true
                     },
                     {
                         name: 'Status',
-                        value: member.presence.status.replace(/(?<!\w)\w/, x => x.toUpperCase()).replace('Dnd', 'DND')
+                        value: `${getEmojiFromStatus(member.presence.status)} ${member.presence.status.replace(/(?<!\w)\w/, x => x.toUpperCase()).replace('Dnd', 'DND')}`
                     },
                     {
                         name: 'Device Status\'s',
-                        value: [{device: 'Mobile',status:member.presence.clientStatus.mobile}, {device: 'Web',status:member.presence.clientStatus.web}, {device: 'Desktop',status: member.presence.clientStatus.desktop}].map(status => `${status.device}: ${status.status == undefined ? 'Offline' : status.status.replace(/(?<!\w)\w/, x => x.toUpperCase()).replace('Dnd', 'DND')}`).join(', ')
+                        value: [{device: 'Mobile',status:`${getEmojiFromStatus(member.presence.clientStatus.mobile)} ${member.presence.clientStatus.mobile}`}, {device: 'Web',status: `${getEmojiFromStatus(member.presence.clientStatus.web)} ${member.presence.clientStatus.web}`}, {device: 'Desktop',status: `${getEmojiFromStatus(member.presence.clientStatus.desktop)} ${member.presence.clientStatus.desktop}`}].filter(status => !status.status.includes('undefined')).map(status => `${status.device}: ${status.status.replace(/(?<!(:|\w))\w/g, x => x.toUpperCase()).replace('Dnd', 'DND')}`).join(', ')
                     },
                     {
                         name: `Roles [${member.roles.cache.size-1}]`,
@@ -63,7 +74,7 @@ module.exports = {
                 .setURL(`https://discord.com/users/${member.user.id}`)
                 .addFields(fields);
                 member.user.fetch().then(user => {
-                    userInfo.setColor(user.accentColor);
+                userInfo.setColor(user.accentColor);
                     message.reply({embeds: [userInfo]});
                 });
             });
